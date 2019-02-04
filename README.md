@@ -14,3 +14,9 @@ The script:
 8. Uses descriptive activity names to name the activities in the data set
 9. Appropriately labels the data set with descriptive variable names
 10. creates a second, independent tidy data set with the average of each variable for each activity and each subject
+
+The files are as follows:
+Codebook.txt describes the data to indicate all the variables and summaries calculated, along with units, and any other relevant information.
+IndependentTidyData.txt is the final output of the analysis, a tidy dataset summarizing wearble technology data
+README.md explains the analysis files
+run_analysis.R R code used to derive the output from the raw data
