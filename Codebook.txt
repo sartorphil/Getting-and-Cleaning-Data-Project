@@ -1,0 +1,54 @@
+
+This Codebook modifies and updates the available codebooks with the data to indicate all the variables and summaries calculated, along with units, and any other relevant information.
+Dataset:Human Activity Recognition Using Smartphones Dataset
+Version 1.0 downloaded and extracted under the folder called UCI HAR DatasetThis data set included the following files:
+
+- 'features_info.txt': Shows information about the variables used on the feature vector.
+
+- 'features.txt': List of all features.
+
+- 'activity_labels.txt': Links the class labels with their activity name.
+
+- 'train/X_train.txt': Training set.
+
+- 'train/y_train.txt': Training labels.
+
+- 'test/X_test.txt': Test set.
+
+- 'test/y_test.txt': Test labels.
+
+The Code for run_analysis.R:
+
+Merges the training and the test sets to create one data set
+
+Read activity files
+dataActivityTest  reads 'test/y_test.txt': Test labels. 'data.frame':	2947 obs. of  1 variable
+dataActivityTrain reads 'train/y_train.txt': Training labels. 'data.frame':	7352 obs. of  1 variable
+Read subject files
+dataSubjectTrain reads ‘subject_train.txt’: 'data.frame':	7352 obs. of  1 variable
+dataSubjectTest  reads ‘subject_test.txt’: 'data.frame':	2947 obs. of  1 variable
+Read features files
+dataFeaturesTest  reads test/X_test.txt': Test set. 'data.frame':	2947 obs. of  561 variables
+dataFeaturesTrain reads 'train/X_train.txt': Training set. 'data.frame':	7352 obs. of  561 variables
+
+combine data tables by rows
+
+dataSubject (10299 obs. of  1 variable) combined from ‘dataSubjectTrain’ and ‘dataSubjectTest’
+dataActivity (10299 obs. of  1 variable)combined from ‘dataActivityTrain’ and ‘dataActivityTest’
+dataFeatures (10299 obs. of  561 variables) combined from ‘dataFeaturesTrain and ‘dataFeaturesTest’
+
+merge
+
+mergeData (10299 obs. of  68 variables) merges ‘dataFeatures’ and ‘dataSubject’ and ‘dataActivity’
+
+Extracts only the measurements on the mean and standard deviation for each measurement
+TidyData (10299 rows, 68 columns) is created by subsetting ‘mergeData’, selecting only columns: subject, code and the measurements on the mean and standard deviation (std) for each measurement
+
+Uses descriptive activity names to name the activities in the data setEntire numbers in code column of the TidyData replaced with corresponding activity taken from second column of the activities variableAppropriately labels the data set with descriptive variable namescode column in TidyData renamed into activityAll Acc in column’s name replaced by AccelerometerAll Gyro in column’s name replaced by GyroscopeAll BodyBody in column’s name replaced by BodyAll Mag in column’s name replaced by MagnitudeAll start with character f in column’s name replaced by FrequencyAll start with character t in column’s name replaced by Time
+All tBody with TimeBody
+All -mean() with Mean
+All -std() with STD
+All -freq() with Frequency
+All angle with Angle
+All gravity with GravityFrom the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
+IndependentTidyData (180 rows, 68 columns) is created by sumarizing TidyData taking the means of each variable for each activity and each subject, after grouped by subject and activity.Export IndependentTidyData into IndependentTidyData.txt file.
